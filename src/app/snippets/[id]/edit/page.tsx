@@ -19,12 +19,6 @@ async function EditSnippet(props: SnippetShowProps) {
     <div className="">
       Snippet Title: {snippet.title}
       <CusomEditor snippet={snippet} />
-      {/* <Editor
-        height={"40vh"}
-        theme="vs-dark"
-        language="javascript"
-        defaultValue={snippet.code}
-      /> */}
     </div>
   );
 }
