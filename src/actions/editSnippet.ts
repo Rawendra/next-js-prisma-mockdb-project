@@ -2,7 +2,7 @@
 import { SnippetType } from "@/customTypes/Types";
 import { db } from "@/db";
 import { redirect } from "next/navigation";
-//import { revalidatePath } from "next/cache";
+import { revalidatePath } from "next/cache";
 export const handleEdit = async (props: SnippetType) => {
   const { id, code } = props;
 
@@ -10,7 +10,7 @@ export const handleEdit = async (props: SnippetType) => {
     where: { id: id },
     data: { code },
   });
-
+  revalidatePath(`/snippets/${id}`)
   redirect(`/snippets/${id}`);
 };
 

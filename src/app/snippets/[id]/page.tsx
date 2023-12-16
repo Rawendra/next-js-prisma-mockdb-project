@@ -10,7 +10,7 @@ async function Snippet(props: SnippetShowProps) {
     params: { id },
   } = props;
 
-  await new Promise((resolve) => setTimeout(resolve, 500));
+  await new Promise((resolve) => setTimeout(resolve, 2000));
   const snippet = await db.snippet.findFirst({ where: { id: parseInt(id) } });
   if (!snippet) {
     notFound();
@@ -49,4 +49,14 @@ async function Snippet(props: SnippetShowProps) {
   );
 }
 
+//will generate static indexs for existing [id] values
+export async function generateStaticParams() {
+  const snippets = await db.snippet.findMany();
+
+  return snippets.map((snippet) => {
+    return {
+      id: snippet.id.toString(),
+    };
+  });
+}
 export default Snippet;
